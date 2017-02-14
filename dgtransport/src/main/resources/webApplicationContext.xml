@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	      http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	      http://www.springframework.org/schema/context
+	      http://www.springframework.org/schema/context/spring-context-4.2.xsd
+	      http://www.springframework.org/schema/mvc
+	      http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+	      http://www.springframework.org/schema/util
+	      http://www.springframework.org/schema/util/spring-util-4.2.xsd
+	      http://www.springframework.org/schema/aop
+	      http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+	      ">
+	      
+      <mvc:annotation-driven />
+      
+      <aop:aspectj-autoproxy proxy-target-class="true"/>
+      <!-- 上传 -->
+      <bean id="multipartResolver" 
+      		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+      		p:defaultEncoding="UTF-8"
+      		p:maxUploadSize="122242880" 
+      		p:uploadTempDir="upload/temp"/>
+      		
+      <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+      		p:viewClass="org.springframework.web.servlet.view.JstlView"
+      		p:prefix="/WEB-INF/views/"
+      		p:suffix=".jsp"/>
+      		
+      <context:component-scan base-package="com.paxonpilot.dgtransport.controller"/>
+      
+      <mvc:resources location="/" mapping="/resources/**"/>
+      
+      <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"
+      		p:messageConverters-ref="messageConverters"/>
+      <bean id="enterpriseXls" class="com.paxonpilot.dgtransport.view.EnterpriseExcelView"/>
+      <bean id="carXls" class="com.paxonpilot.dgtransport.view.CarExcelView"/>
+      <bean id="employeeXls" class="com.paxonpilot.dgtransport.view.EmployeeExcelView"/>
+      <bean id="enModelXls" class="com.paxonpilot.dgtransport.view.EnterpriseModelExcelView"/>
+      <bean id="carModelXls" class="com.paxonpilot.dgtransport.view.CarModelExcelView"/>
+      <bean id="empModelXls" class="com.paxonpilot.dgtransport.view.EmployeeModelExcelView"/>
+      
+      <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="10"></bean>
+      <util:list id="messageConverters">
+      	<bean class="org.springframework.http.converter.BufferedImageHttpMessageConverter"/>
+      	<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+      	<bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+      	<bean class="org.springframework.http.converter.xml.XmlAwareFormHttpMessageConverter"/>
+      	<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+      		 <property name="supportedMediaTypes">
+	            <list>
+	                <value>text/html;charset=UTF-8</value>
+	                <value>text/json;charset=UTF-8</value>
+	                <value>application/json;charset=UTF-8</value>
+	            </list>
+	        </property>
+      	</bean>
+      	<bean class="org.springframework.http.converter.FormHttpMessageConverter"/>
+      </util:list>
+      <bean class="org.springframework.format.support.FormattingConversionServiceFactoryBean"/>
+
+
+	<mvc:resources mapping="/upload/**" location="/upload/"/>
+
+</beans>      

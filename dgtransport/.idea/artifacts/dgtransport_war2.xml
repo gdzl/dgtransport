@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="dgtransport:war2">
+    <output-path>E:/博丽信息技术/项目备份/危运/16-12-12</output-path>
+    <root id="archive" name="dgtransport_war.war">
+      <element id="artifact" artifact-name="dgtransport:war exploded" />
+    </root>
+  </artifact>
+</component>

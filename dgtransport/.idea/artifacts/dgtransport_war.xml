@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="dgtransport:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="dgtransport.war">
+      <element id="artifact" artifact-name="dgtransport:war exploded" />
+    </root>
+  </artifact>
+</component>

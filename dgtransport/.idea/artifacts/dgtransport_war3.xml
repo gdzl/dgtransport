@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="dgtransport:war3">
+    <output-path>E:/boli</output-path>
+    <root id="archive" name="dgtransport_war.war">
+      <element id="artifact" artifact-name="dgtransport:war exploded" />
+    </root>
+  </artifact>
+</component>
